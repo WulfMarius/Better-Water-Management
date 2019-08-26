@@ -55,7 +55,7 @@ namespace BetterWaterManagement
 
             for (int index = 0; index < GameManager.GetInventoryComponent().m_Items.Count; ++index)
             {
-                GearItem component = GameManager.GetInventoryComponent().m_Items[index].GetComponent<GearItem>();
+                GearItem component = GameManager.GetInventoryComponent().m_Items[index];
                 if (component.m_FoodItem != null && component.m_FoodItem.m_IsDrink)
                 {
                     if (component.m_IsInSatchel)
