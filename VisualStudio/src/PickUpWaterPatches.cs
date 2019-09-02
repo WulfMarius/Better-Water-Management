@@ -219,7 +219,7 @@ namespace BetterWaterManagement
     {
         internal static void Postfix(Panel_PickWater __instance)
         {
-            if (InputManager.GetEquipPressed(GameManager.Instance()))
+            if (InputManager.GetEquipPressed(__instance))
             {
                 Traverse traverse = Traverse.Create(__instance);
 
