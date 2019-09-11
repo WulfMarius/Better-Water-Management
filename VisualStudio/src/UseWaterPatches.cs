@@ -55,7 +55,7 @@ namespace BetterWaterManagement
 
             for (int index = 0; index < GameManager.GetInventoryComponent().m_Items.Count; ++index)
             {
-                GearItem component = GameManager.GetInventoryComponent().m_Items[index].GetComponent<GearItem>();
+                GearItem component = GameManager.GetInventoryComponent().m_Items[index];
                 if (component.m_FoodItem != null && component.m_FoodItem.m_IsDrink)
                 {
                     if (component.m_IsInSatchel)
@@ -150,17 +150,16 @@ namespace BetterWaterManagement
             {
                 if (!WaterUtils.IsCooledDown(gearItem.m_CookingPotItem))
                 {
-                    GameManager.GetPlayerManagerComponent().ApplyFreezingBuff(20 * progress, 0.5f, 1 * progress);
-                    PlayerDamageEvent.SpawnAfflictionEvent("GAMEPLAY_WarmingUp", "GAMEPLAY_BuffHeader", "ico_injury_warmingUp", InterfaceManager.m_Panel_ActionsRadial.m_FirstAidBuffColor);
+                    GameManager.GetPlayerManagerComponent().ApplyFreezingBuff(20 * progress, 0.5f, 1 * progress, 1);
+                    InterfaceManager.m_Panel_HUD.ShowBuffNotification("GAMEPLAY_WarmingUp", "GAMEPLAY_BuffHeader", InterfaceManager.m_Panel_HUD.m_BuffSpriteFreezingBuff);
                 }
 
                 WaterUtils.SetWaterAmount(gearItem.m_CookingPotItem, waterSupply.m_VolumeInLiters);
                 Object.Destroy(waterSupply);
             }
 
-            if (waterSupply is WaterSourceSupply)
+            if (waterSupply is WaterSourceSupply waterSourceSupply)
             {
-                WaterSourceSupply waterSourceSupply = waterSupply as WaterSourceSupply;
                 waterSourceSupply.UpdateWaterSource();
             }
 

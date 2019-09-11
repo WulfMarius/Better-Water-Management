@@ -302,7 +302,7 @@ namespace BetterWaterManagement
     {
         internal static bool Prefix(Panel_Cooking __instance)
         {
-            if (!InputManager.GetInventoryDropPressed(GameManager.Instance()))
+            if (!InputManager.GetInventoryDropPressed(__instance))
             {
                 return true;
             }
